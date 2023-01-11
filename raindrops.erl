@@ -1,6 +1,6 @@
 -module(raindrops).
 
--export([convert/1,get_dict/0]).
+-export([convert/1,test/0]).
 
 convert(Number) -> case has_multiple(Number,get_multiples()) of
     true -> convertm(Number);
@@ -16,10 +16,22 @@ convertm(Number) ->
 
 
 get_multiples()->
-    dict:fetch_keys(raindrops:get_dict()).
+    dict:fetch_keys(get_dict()).
 
 get_dict() ->
     dict:from_list([{3,"Pling"},{5,"Plang"},{7,"Plong"}]).
 
 has_multiple(Number,Multiples) ->
     lists:any(fun(Mul) -> Number rem Mul =:= 0 end, Multiples).
+
+test() ->
+    "Pling" = raindrops:convert(129),
+    "PlingPlang" = raindrops:convert(45),
+    "PlingPlangPlong" = raindrops:convert(315),
+    "PlingPlong" = raindrops:convert(21),
+    "Plong" = raindrops:convert(7),
+    ok.
+
+
+
+    
