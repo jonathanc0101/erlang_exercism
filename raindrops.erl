@@ -1,6 +1,6 @@
 -module(raindrops).
 
--export([convert/1]).
+-export([convert/1,get_dict/0]).
 
 convert(Number) -> case has_multiple(Number,get_multiples()) of
     true -> convertm(Number);
@@ -16,7 +16,7 @@ convertm(Number) ->
 
 
 get_multiples()->
-    L = [3,5,7],
+    L = dict:fetch_keys(raindrops:get_dict()),
     L.
 
 get_dict() ->
