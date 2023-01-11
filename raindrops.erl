@@ -16,16 +16,10 @@ convertm(Number) ->
 
 
 get_multiples()->
-    L = dict:fetch_keys(raindrops:get_dict()),
-    L.
+    dict:fetch_keys(raindrops:get_dict()).
 
 get_dict() ->
-    D = [{3,"Pling"},{5,"Plang"},{7,"Plong"}],
-    dict:from_list(D).
+    dict:from_list([{3,"Pling"},{5,"Plang"},{7,"Plong"}]).
 
 has_multiple(Number,Multiples) ->
-    Amount = length(lists:filter(fun(Mul) -> Number rem Mul =:= 0 end, Multiples)),
-    if 
-        Amount >= 1 -> true;
-        Amount < 1 -> false
-    end.
+    lists:any(fun(Mul) -> Number rem Mul =:= 0 end, Multiples).
